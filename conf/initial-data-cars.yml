@@ -1,0 +1,30 @@
+cars:
+
+    - !!models.Car
+        id:                 1
+        manufacturer:       BMW
+        model:              X5
+        description:        tesetsedfsg
+        ad:                 null
+
+    - !!models.Car
+        id:                 2
+        manufacturer:       BMW
+        model:              X6
+        description:        tesetsedfsg
+        ad:                 null
+
+    - !!models.Car
+        id:                 3
+        manufacturer:       Audi
+        model:              A4
+        description:        tesetsedfsg
+        ad:                 null
+
+    - !!models.Car
+        id:                 4
+        manufacturer:       Renault
+        model:              C4
+        description:        tesetsedfsg
+        ad:                 null
+

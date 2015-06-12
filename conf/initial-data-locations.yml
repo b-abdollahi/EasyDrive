@@ -1,0 +1,20 @@
+locations:
+
+    - !!models.Location
+        id:                 1
+        city:               linz
+        state:              Oberoesterreich
+
+
+    - !!models.Location
+        id:                 2
+        city:               wien
+        state:              Wien
+
+
+    - !!models.Location
+        id:                 3
+        city:               salzburg
+        state:              Salzburg
+
+
