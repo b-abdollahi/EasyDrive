@@ -3,14 +3,23 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Ads.index
+GET           /                            controllers.Ads.index
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET           /assets/*file                controllers.Assets.at(path="/public", file)
 
+GET           /login                       controllers.Application.login()
+POST          /authenticate                controllers.Application.authenticate()
+GET           /register                    controllers.Application.newUser()
+POST          /register                    controllers.Application.register()
+GET           /logout                      controllers.Application.logout()
 
-GET           /advertisements/                                  controllers.Ads.list(page: Int ?= 0)
-GET           /advertisements/new                               controllers.Ads.newAd()
-GET           /advertisements/id/                               controllers.Ads.details(id: Long)
-POST          /advertisements/                                  controllers.Ads.save()
-DELETE        /advertisements/id/                           controllers.Ads.delete(id: Long)
+GET           /getPicture/:id              controllers.Ads.picture(id: Long)
+
+GET           /advertisements/             controllers.Ads.list(page: Int ?= 0)
+GET           /advertisements/new          controllers.Ads.newAd()
+GET           /advertisements/edit         controllers.Ads.details(id: Long)
+POST          /advertisements/save         controllers.Ads.save()
+DELETE        /delete/                     controllers.Ads.delete(id: Long)
+POST          /uploadPicture               controllers.Ads.uploadPicture()
+GET           /picture/:id/fullSize        controllers.Ads.pictureLarge(id: Long)

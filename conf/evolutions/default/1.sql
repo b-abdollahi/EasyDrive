@@ -30,6 +30,8 @@ create table location (
 
 create table user (
   id                        bigint not null,
+  email                     varchar(255),
+  password                  varchar(255),
   name                      varchar(255),
   tel                       varchar(255),
   constraint pk_user primary key (id))

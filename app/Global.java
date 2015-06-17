@@ -3,9 +3,11 @@ import models.Car;
 import models.Location;
 import play.Application;
 import play.GlobalSettings;
+import play.api.mvc.EssentialFilter;
 import play.data.format.Formats;
 import play.data.format.Formatters;
 import play.data.format.Formatters.SimpleFormatter;
+import play.filters.csrf.CSRFFilter;
 import play.libs.Yaml;
 
 import java.text.ParseException;
@@ -17,6 +19,13 @@ import java.util.Map;
 
 
 public class Global extends GlobalSettings {
+
+    @Override
+    public <T extends EssentialFilter> Class<T>[] filters() {
+        //Class[] filters={CSRFFilter.class,BasicAuthenticationFilter.class};
+        Class[] filters={CSRFFilter.class};
+        return filters;
+    }
 
     public void onStart(Application app) {
         // Register our DateFormater

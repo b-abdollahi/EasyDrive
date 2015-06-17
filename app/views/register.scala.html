@@ -1,0 +1,34 @@
+@(registerForm: Form[Application.Register])
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("Join EasyDrive") {
+  <div class="container">
+    <h2>Join EasyDrive!</h2>
+    <div class="jumbotron">
+
+      @helper.form(helper.CSRF(routes.Application.register)) {
+        <p>
+          <input type="email" name="email" placeholder="Email"
+          value="@registerForm("email").value">
+        </p>
+        <p>
+          <input type="text" name="name" placeholder="Name"
+          value="@registerForm("name").value">
+        </p>
+        <p>
+          <input type="tel" name="tel" placeholder="Telephone number"
+          value="@registerForm("tel").value">
+        </p>
+        <p>
+          <input type="password" name="password"
+          placeholder="Password"
+          value="@registerForm("password").value">
+        </p>
+        <p>
+          <button type="submit">Sign up now!</button>
+        </p>
+      }
+    </div>
+  </div>
+}

@@ -7,7 +7,7 @@
         <title>@title</title>
         <script src="@routes.Assets.at("javascripts/jquery-2.1.1.min.js")" type="text/javascript"></script>
         <script src="@routes.Assets.at("bootstrap/js/bootstrap.min.js")" type="text/javascript"></script>
-        <link href="@routes.Assets.at("bootstrap/css/lavish-bootstrap.css")" rel="stylesheet" media="screen">
+        <link href="@routes.Assets.at("bootstrap/css/bootstrap.min.css")" rel="stylesheet" media="screen">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/favicon.ico")">
         <script src="@routes.Assets.at("javascripts/bootstrap-filestyle.min.js")" type="text/javascript" ></script>
         <link rel="stylesheet" href="@routes.Assets.at("stylesheets/jquery.selectBoxIt.css")" >
@@ -54,8 +54,10 @@
         /* Not required for template or sticky footer method. */
 
         #wrap > .container {
-        padding: 60px 15px 0;
+        padding: 50px 15px 0;
+
         }
+
         .container .credit {
         margin: 20px 0;
         }
@@ -73,14 +75,21 @@
         background: #A7DFEB
         }
 
+        .bg-car{
+        background-size: cover;
+        background-position: 70%;
+        background-image: url( '@routes.Assets.at("images/car-bg1.jpg")' );
 
-
-        .color-purple{
-        background: #7173e2
-        @*background: url('@routes.Assets.at("images/bg2.jpg")');*@
-        @*background-size: 100% 100%;*@
-        @*background-repeat: no-repeat;*@
         }
+
+        .bg-car2{
+        background-size: cover;
+        background-position: 50%;
+        background-image: url( '@routes.Assets.at("images/car-bg2.jpg")' ) ;
+
+        }
+
+
         </style>
 
     </head>
@@ -113,7 +122,7 @@
                             EasyDrive <sup><small>BETA</small></sup></a>
                     </div>
                     <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
+
                             @*<li class="dropdown">*@
                                 @*<a class="dropdown-toggle" href="#" data-toggle="dropdown">Devices <b class="caret"></b></a>*@
                                 @*<ul class="dropdown-menu">*@
@@ -144,11 +153,18 @@
                                 @*</ul>*@
                             @*</li>*@
 
-                        </ul>
-                        <div class="col-sm-3 col-md-3 navbar-right" >
+                    <ul class="nav navbar-nav navbar-right">
+                        @if(session.get("email") == null){
+                            <li><a href="@routes.Application.register()">Register</a></li>
+                            <li><a href="@routes.Application.login()">Log in</a></li>
+                        }else{
+                            <li><a href="@routes.Application.logout()">Log out</a></li>
+                        }
+                    </ul>
+                    <div class="col-sm-3 col-md-3 navbar-right" >
                             <form class="navbar-form" role="search" action="#" method="get">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Search" name="keyword" >
+                                    <input type="text" class="form-control" placeholder="Find a car!" name="keyword" >
                                     <div class="input-group-btn">
                                         <button class="btn btn-default" type="submit" value="Search"><i class="glyphicon glyphicon-search"></i></button>
                                     </div>
@@ -162,6 +178,8 @@
 
             <div class="container">
                 @if(flash.containsKey("success")){
+                    <br>
+
                     <div class="alert alert-success alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         @flash.get("success")
@@ -169,21 +187,24 @@
                 }
 
                 @if(flash.containsKey("error")){
+                    <br>
+
                     <div class="alert alert-danger alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         @flash.get("error")
                     </div>
                 }
+            </div>
                 @content
                 <br><br>
-            </div>
+
 
         </div>
 
         <div id="footer">
             <div class="container">
                 <p class="text-muted credit">
-                    EasyDrive <sup><small>BETA</small></sup> - All Rights Reserved for <a href="http://www.easydrive.com">EasyDrive GmbH</a>
+                    EasyDrive <sup><small>BETA</small></sup> - All Rights Reserved for <a href="#">EasyDrive</a>
 
                 </p>
 

@@ -1,67 +1,114 @@
 @(currentPage: com.avaje.ebean.Page[Ad])
-
+@import java.math.BigInteger; var index=1;
     @import helper.twitterBootstrap._
 
 
 
     @main("Latest Advertisements") {
-        <h3 > Latest Advertisements
 
-            <div class="pull-right">
-                <a href="@routes.Ads.newAd()" class="btn btn-primary">
-                    <i class="glyphicon glyphicon-plus"></i> Rent your car </a>
+        @if(Utils.Utilities.randomNum() == 0){
+            <div class="bg-car">
+        }else{
+            <div class="bg-car2">
+        }
+            <div class="container">
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <span>
+                <h1> <span style="background:rgba(54, 25, 25, .5);color:white;text-shadow: 1px 1px #ffffff"> EasyDrive </span></h1>
+                    <h1> <span style="background:rgba(54, 25, 25, .5);color:white;text-shadow: 1px 1px #ffffff"> Car renting service of the future </span></h1>
+                </span>
+                    <h1>
+                    <a href="@routes.Ads.newAd()" class="btn btn-default">
+                        <i class="glyphicon glyphicon-plus"></i> Rent your car </a>
+                    </h1>
+                    @*<p>*@
+                        @*<form class="navbar-form" role="search" action="#" method="get">*@
+                            @*<div class="input-group">*@
+                                @*<input type="text" class="form-control" placeholder="Find a car!" name="keyword" >*@
+                                @*<div class="input-group-btn">*@
+                                    @*<button class="btn btn-default" type="submit" value="Search"><i class="glyphicon glyphicon-search"></i></button>*@
+                                @*</div>*@
+                            @*</div>*@
+                        @*</form>*@
+                    @*</p>*@
+                <br><br><br><br><br><br><br><br><br>
             </div>
-        </h3>
-        <br>
-
-
-
-        <div class="table-responsive">
-            <table class="table table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>Location</th>
-                        <th>Car</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                @for(ad <- currentPage.getList()) {
-                    <tr>
-                        <td><a href="#"> @ad.location.toString </a></td>
-                        <td><a href="#"> @ad.car.toString </a></td>
-                        <td>
-                            <a href="@routes.Ads.details(ad.id)"><i class="glyphicon glyphicon-pencil"></i></a>
-                        </td>
-                    </tr>
-                }
-                </tbody>
-            </table>
         </div>
 
-        <nav>
-            <ul class="pagination">
-                @if(currentPage.hasPrev) {
-                    <li aria-label="Previous">
-                        <a href="@routes.Ads.list(currentPage.getPageIndex - 1)">&laquo; </a>
-                    </li>
-                } else {
-                    <li aria-label="Previous disabled">
-                        <a>&laquo;</a>
-                    </li>
+
+
+        <div class="container">
+            <h3 > Latest: </h3>
+            @*<div class="pull-right">*@
+            @*<nav>*@
+                @*<ul class="pagination">*@
+                    @*@if(currentPage.hasPrev) {*@
+                        @*<li aria-label="Previous">*@
+                            @*<a href="@routes.Ads.list(currentPage.getPageIndex - 1)">&laquo; </a>*@
+                        @*</li>*@
+                    @*} else {*@
+                        @*<li aria-label="Previous disabled">*@
+                            @*<a>&laquo;</a>*@
+                        @*</li>*@
+                    @*}*@
+                    @*<li class="current">*@
+                        @*<a>@currentPage.getDisplayXtoYofZ(" to ", " from ")</a>*@
+                    @*</li>*@
+                    @*@if(currentPage.hasNext) {*@
+                        @*<li aria-label="Next">*@
+                            @*<a href="@routes.Ads.list(currentPage.getPageIndex + 1)"> &raquo;</a>*@
+                        @*</li>*@
+                    @*} else {*@
+                        @*<li aria-label="next disabled">*@
+                            @*<a>&raquo;</a>*@
+                        @*</li>*@
+                    @*}*@
+                @*</ul>*@
+            @*</nav>*@
+            @*</div>*@
+            @for(ad <- currentPage.getList()) {
+                    @if(index % 3 == 0){
+                        <div class="row">
+                        }
+
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <a href="@routes.Ads.details(ad.id)">
+                            @if(ad.getPicture != null){
+                                <img src="@routes.Ads.picture(ad.id)"
+                                class="img-responsive img-thumbnail"
+                                alt="@ad.toString"
+                                @*width="300"*@
+                                >
+                            } else {
+                                <img src="@routes.Assets.at("images/placeholder-car.jpg")"
+                                class="img-responsive img-thumbnail"
+                                alt="@ad.toString"
+                                @*width="300"*@
+                                >
+                            }
+                            </a>
+                            <div class="caption">
+
+                                <p><b>@ad.car (@ad.location)</b></p>
+                                <p>@ad.description</p>
+                                @*<div class="text-center"><a href="@routes.Ads.details(ad.id)" class="btn btn-primary" role="button">ad.</a></div>*@
+                            </div>
+                        </div>
+                    </div>
+
+                    @if(index % 3 == 0){
+                    </div>
+
+                    }
+                    @{index = index+1}
+            }
+            @if(index-1 % 3 != 0){
+                </div>
                 }
-                <li class="current">
-                    <a>@currentPage.getDisplayXtoYofZ(" to ", " from ")</a>
-                </li>
-                @if(currentPage.hasNext) {
-                    <li aria-label="Next">
-                        <a href="@routes.Ads.list(currentPage.getPageIndex + 1)"> &raquo;</a>
-                    </li>
-                } else {
-                    <li aria-label="next disabled">
-                        <a>&raquo;</a>
-                    </li>
-                }
-            </ul>
-        </nav>
+
+        </div>
+
+
+
     }

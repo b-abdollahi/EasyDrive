@@ -9,9 +9,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Behzad on 6/9/2015.
- */
 @Entity
 public class Location extends Model {
 
@@ -19,11 +16,9 @@ public class Location extends Model {
     @Id
     public Long id;
 
-    @Constraints.Required
     @Constraints.MaxLength(50)
     public String city;
 
-    @Constraints.Required
     @Constraints.MaxLength(50)
     public String state;
 
@@ -35,6 +30,10 @@ public class Location extends Model {
 
     public Location(){
 
+    }
+
+    public static Location findByID(Long id) {
+        return find.where().eq("id", id).findUnique();
     }
 
 

@@ -1,0 +1,26 @@
+@(loginForm: Form[Application.Login])
+@import helper._
+@import helper.twitterBootstrap._
+
+@main("Please sign in to EasyDrive") {
+  <div class="container">
+    <h2>Sign in (<a href="@routes.Application.register()">Register here</a>)</h2>
+    <div class="jumbotron">
+      @helper.form(helper.CSRF(routes.Application.authenticate)) {
+
+        <p>
+          <input type="email" name="email" placeholder="Email"
+          value="@loginForm("email").value">
+        </p>
+        <p>
+          <input type="password" name="password"
+          placeholder="Password">
+        </p>
+        <p>
+          <button type="submit">Sign in</button>
+        </p>
+      }
+    </div>
+  </div>
+
+}

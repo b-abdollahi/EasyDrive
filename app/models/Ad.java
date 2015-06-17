@@ -4,19 +4,17 @@ import Utils.DateFormat;
 import com.avaje.ebean.Page;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
-import play.mvc.PathBindable;
 
 import javax.persistence.*;
 import java.util.Date;
 
 
 @Entity
-public class Ad extends Model implements PathBindable<Ad> {
+public class Ad extends Model {
 
     @Id
     public Long id;
 
-    public User user;
 
     @ManyToOne
     public Location location;
@@ -32,8 +30,7 @@ public class Ad extends Model implements PathBindable<Ad> {
     public Date date = new Date();
 
     @Lob
-    @Basic(fetch= FetchType.LAZY)
-    public byte[] picture;
+    private byte[] picture;
 
     public static Finder<Long, Ad> find = new Finder<>(Long.class, Ad.class);
 
@@ -41,6 +38,13 @@ public class Ad extends Model implements PathBindable<Ad> {
 
     }
 
+    public byte[] getPicture() {
+        return picture;
+    }
+
+    public void setPicture(byte[] picture) {
+        this.picture = picture;
+    }
 
 
     public static Ad findByID(Long id) {
@@ -55,18 +59,4 @@ public class Ad extends Model implements PathBindable<Ad> {
                 .getPage(page);
     }
 
-    @Override
-    public Ad bind(String key, String id) {
-        return findByID(Long.parseLong(id));
-    }
-
-    @Override
-    public String unbind(String key) {
-        return this.id.toString();
-    }
-
-    @Override
-    public String javascriptUnbind() {
-        return this.id.toString();
-    }
 }
