@@ -58,7 +58,7 @@ public class Ad extends Model {
     public static Page<Ad> find(int page){
         return find.where()
                 .orderBy("id asc")
-                .findPagingList(15)
+                .findPagingList(6)
                 .setFetchAhead(false)
                 .getPage(page);
     }
