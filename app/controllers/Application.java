@@ -2,17 +2,13 @@ package controllers;
 
 import models.Ad;
 import models.User;
-import play.*;
 import play.data.Form;
 import play.mvc.*;
 
 import views.html.*;
 import views.html.ads.searchResult;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static play.data.Form.form;
 

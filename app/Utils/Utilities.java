@@ -1,6 +1,5 @@
 package Utils;
 
-import play.api.mvc.Result;
 import play.mvc.Controller;
 
 import javax.imageio.ImageIO;
@@ -57,26 +56,4 @@ public class Utilities extends Controller {
         }
     }
 
-//
-//    public static Result search (String keyword) {
-//        keyword = keyword.trim();
-//        if (keyword.equals("")){
-//            flash("error", "Empty search term...");
-//            return redirect(request().getHeader("referer"));
-//        }
-//        if (keyword.length() < 3){
-//            flash("error", "Search term too short");
-//            return redirect(request().getHeader("referer"));
-//        }
-//        return ok(searchResults.render(Device.searchDevices(keyword),
-//                DeviceModel.searchDeviceModels(keyword),
-//                DeviceType.searchDeviceTypes(keyword),
-//                Manufacturer.searchManufacturers(keyword),
-//                Setup.searchSetups(keyword),
-//                keyword));
-//    }
-//
-//    public static Result about() {
-//        return ok(about.render());
-//    }
 }

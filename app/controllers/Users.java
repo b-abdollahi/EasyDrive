@@ -9,9 +9,7 @@ import views.html.userPage;
 
 import java.util.List;
 
-/**
- * Created by Behzad on 6/17/2015.
- */
+
 public class Users extends Controller {
 
     @Security.Authenticated(Secured.class)
