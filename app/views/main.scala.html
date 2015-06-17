@@ -71,8 +71,8 @@
         font-size: 80%;
         }
 
-        .color-lightBlue{
-        background: #A7DFEB
+        .color-gray{
+        background: #cccacd
         }
 
         .bg-car{
@@ -86,6 +86,13 @@
         background-size: cover;
         background-position: 50%;
         background-image: url( '@routes.Assets.at("images/car-bg2.jpg")' ) ;
+
+        }
+
+        .bg-text{
+        background-size: cover;
+        background-position: 50%;
+        background-image: url( '@routes.Assets.at("images/bg.jpg")' ) ;
 
         }
 
@@ -118,51 +125,30 @@
                         </button>
 
                         <a href="@routes.Ads.list()" class="navbar-brand">
-                            @*<img style="max-width:40px; margin-top: -7px;" src=@routes.Assets.at("images/LM_logo.png")>*@
                             EasyDrive <sup><small>BETA</small></sup></a>
                     </div>
                     <div class="collapse navbar-collapse">
-
-                            @*<li class="dropdown">*@
-                                @*<a class="dropdown-toggle" href="#" data-toggle="dropdown">Devices <b class="caret"></b></a>*@
-                                @*<ul class="dropdown-menu">*@
-                                    @*<li><a href="@routes.Devices.list(0)">All Devices</a></li>*@
-                                    @*<li class="divider"></li>*@
-                                    @*<li><a href="@routes.DeviceModels.list(0)">Device Models</a></li>*@
-                                    @*<li><a href="@routes.DeviceTypes.list(0)">Device Types</a></li>*@
-                                    @*<li class="divider"></li>*@
-                                    @*<li><a href="@routes.Devices.outOfCalDevices()"><i class="glyphicon glyphicon-warning-sign"></i>  Uncalibrated Devices</a></li>*@
-                                    @*<li class="divider"></li>*@
-                                    @*<li><a href="@routes.Devices.newDevice()"><i class="glyphicon glyphicon-plus"></i>  New Device</a></li>*@
-                                @*</ul>*@
-                            @*</li>*@
-                            @*<li><a href="@routes.Manufacturers.list(0)">Manufacturers</a></li>*@
-                            @*<li><a href="@routes.Setups.list(0)">Setups</a></li>*@
-                            @*<li class="dropdown">*@
-                                @*<a class="dropdown-toggle" href="#" data-toggle="dropdown">Tools <b class="caret"></b></a>*@
-                                @*<ul class="dropdown-menu">*@
-                                    @*<li><a href="@routes.DateExtractorContr.getFiles()"><i class="glyphicon glyphicon-wrench"></i>  Update Calibration dates</a></li>*@
-                                    @*<li><a href="#"><i class="glyphicon glyphicon-export"></i>  Export</a></li>*@
-                                    @*<li><a href="#">Something else here</a></li>*@
-                                    @*<li class="divider"></li>*@
-                                    @*<li class="dropdown-header">Nav header</li>*@
-                                    @*<li><a href="#"><i class="glyphicon glyphicon-stats"></i>  Stats</a></li>*@
-                                    @*<li><a href="#">One more separated link</a></li>*@
-                                    @*<li class="divider"></li>*@
-                                    @*<li><a href="@routes.Utilities.about()"><i class="glyphicon glyphicon-info-sign"></i>  About</a></li>*@
-                                @*</ul>*@
-                            @*</li>*@
-
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" href="#" data-toggle="dropdown">Cars <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@routes.Ads.all(0)">All cars</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="@routes.Ads.newAd()">Rent your car!</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     <ul class="nav navbar-nav navbar-right">
                         @if(session.get("email") == null){
                             <li><a href="@routes.Application.register()">Register</a></li>
                             <li><a href="@routes.Application.login()">Log in</a></li>
                         }else{
+                            <li><a href="@routes.Users.myPage()"><i class="glyphicon glyphicon-user"></i> <b>My Page</b></a></li>
                             <li><a href="@routes.Application.logout()">Log out</a></li>
                         }
                     </ul>
                     <div class="col-sm-3 col-md-3 navbar-right" >
-                            <form class="navbar-form" role="search" action="#" method="get">
+                            <form class="navbar-form" role="search" action="@routes.Application.search()" method="get">
                                 <div class="input-group">
                                     <input type="text" class="form-control" placeholder="Find a car!" name="keyword" >
                                     <div class="input-group-btn">

@@ -7,12 +7,15 @@ import com.google.common.io.Files;
 import models.Ad;
 import models.Car;
 import models.Location;
+import models.User;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
 import views.html.ads.adList;
 import play.mvc.Security;
+import views.html.ads.all;
+
 import java.io.IOException;
 import java.util.Map;
 
@@ -34,14 +37,28 @@ public class Ads extends Controller {
         return ok(views.html.ads.details.render(adForm));
     }
 
-    @Security.Authenticated(Secured.class)
+
     public static Result details(Long id) {
         Ad ad = Ad.findByID(id);
         if (ad == null) {
             flash("error", "Advertisement does not exist. ");
             return redirect(request().getHeader("referer"));
         }
-        Form<Ad> filledForm = adForm.fill(ad);
+        String email =  session("email");
+        User user = null;
+        if (email != null){
+            user = User.findByEmail(email);
+        }
+        if (user == null || !user.id.equals(ad.user.id)){
+            return ok(views.html.ads.adView.render(ad));
+        }else{
+            Form<Ad> filledForm = adForm.fill(ad);
+            return editAd(filledForm);
+        }
+    }
+
+    @Security.Authenticated(Secured.class)
+    private static Result editAd(Form<Ad> filledForm){
         return ok(views.html.ads.details.render(filledForm));
     }
 
@@ -79,14 +96,20 @@ public class Ads extends Controller {
                 return redirect(request().getHeader("referer"));
             }
         }
+
+        String email =  session("email");
+        User user = User.findByEmail(email);
+        if (user == null){
+            flash("error", "Please sign in.");
+            return badRequest(views.html.ads.details.render(boundForm));
+        }
+        ad.user = user;
+        ad.user.addAd(ad);
+        ad.user.update();
         if (ad.id == null) {
             ad.save();
-            flash("success",
-                    String.format("Successfully added."));
         } else {
             ad.update();
-            flash("success",
-                    String.format("Successfully updated."));
         }
         return redirect(routes.Ads.list(0));
     }
@@ -163,4 +186,8 @@ public class Ads extends Controller {
     }
 
 
+    public static Result all(int page) {
+        Page<Ad> ads = Ad.find(page);
+        return ok(all.render(ads));
+    }
 }

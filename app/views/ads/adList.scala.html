@@ -4,7 +4,7 @@
 
 
 
-    @main("Latest Advertisements") {
+    @main("EasyDrive, Future of car sharing!") {
 
         @if(Utils.Utilities.randomNum() == 0){
             <div class="bg-car">
@@ -34,38 +34,32 @@
                 <br><br><br><br><br><br><br><br><br>
             </div>
         </div>
+        <div class="bg-text">
+            <div class="container">
+                <br><br>
+                <h4>
+                    <i>
+                        <div class="col-md-6">
+                            <p><b>Do you have a car?</b></p>
+                            <p>You can rent your car to others and earn money and also help our planet by reducing CO2 emissions!</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><b>Do you need a car? </b></p>
+                            <p>Use our powerful search engine and find the right car nearby! Contact the owner for more information!</p>
+                        </div>
+                    </i>
+                </h4>
+                <br><br>
+                <br><br>
+                <br><br>
+            </div>
 
+
+        </div>
 
 
         <div class="container">
-            <h3 > Latest: </h3>
-            @*<div class="pull-right">*@
-            @*<nav>*@
-                @*<ul class="pagination">*@
-                    @*@if(currentPage.hasPrev) {*@
-                        @*<li aria-label="Previous">*@
-                            @*<a href="@routes.Ads.list(currentPage.getPageIndex - 1)">&laquo; </a>*@
-                        @*</li>*@
-                    @*} else {*@
-                        @*<li aria-label="Previous disabled">*@
-                            @*<a>&laquo;</a>*@
-                        @*</li>*@
-                    @*}*@
-                    @*<li class="current">*@
-                        @*<a>@currentPage.getDisplayXtoYofZ(" to ", " from ")</a>*@
-                    @*</li>*@
-                    @*@if(currentPage.hasNext) {*@
-                        @*<li aria-label="Next">*@
-                            @*<a href="@routes.Ads.list(currentPage.getPageIndex + 1)"> &raquo;</a>*@
-                        @*</li>*@
-                    @*} else {*@
-                        @*<li aria-label="next disabled">*@
-                            @*<a>&raquo;</a>*@
-                        @*</li>*@
-                    @*}*@
-                @*</ul>*@
-            @*</nav>*@
-            @*</div>*@
+            <h3 > Latest cars (<a href="@routes.Ads.all(0)"> See all </a>)</h3>
             @for(ad <- currentPage.getList()) {
                     @if(index % 3 == 0){
                         <div class="row">

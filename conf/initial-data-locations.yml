@@ -18,3 +18,14 @@ locations:
         state:              Salzburg
 
 
+    - !!models.Location
+        id:                 4
+        city:               graz
+        state:              Steiermark
+
+
+    - !!models.Location
+        id:                 5
+        city:               Wels
+        state:              Oberoesterreich
+

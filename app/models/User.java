@@ -8,7 +8,8 @@ import play.data.validation.Constraints;
         import javax.persistence.Id;
         import javax.persistence.ManyToMany;
         import javax.persistence.OneToMany;
-        import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.LinkedList;
         import java.util.List;
 
 @Entity
@@ -31,6 +32,9 @@ public class User extends Model {
     @Constraints.MaxLength(50)
     public String tel;
 
+    @OneToMany(mappedBy = "user")
+    public List<Ad> ads = new ArrayList<Ad>();
+
     public static Finder<Long, User> finder = new Finder<Long, User>(Long.class, User.class);
 
     public User() {
@@ -41,6 +45,10 @@ public class User extends Model {
         this.password = password;
         this.name = name;
         this.tel = tel;
+    }
+
+    public void addAd(Ad ad){
+        ads.add(ad);
     }
 
     public User(String email, String password) {
@@ -57,4 +65,11 @@ public class User extends Model {
         return (finder.where().eq("email", email).findUnique() != null);
     }
 
+    public static User findByEmail(String email) {
+        return finder.where().eq("email", email).findUnique();
+    }
+
+    public static User findByID(Long id) {
+        return finder.where().eq("id", id).findUnique();
+    }
 }

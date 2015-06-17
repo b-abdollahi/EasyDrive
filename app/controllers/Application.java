@@ -1,11 +1,19 @@
 package controllers;
 
+import models.Ad;
 import models.User;
 import play.*;
 import play.data.Form;
 import play.mvc.*;
 
 import views.html.*;
+import views.html.ads.searchResult;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import static play.data.Form.form;
 
 public class Application extends Controller {
@@ -37,6 +45,10 @@ public class Application extends Controller {
         String name = registerForm.get().name;
         String tel = registerForm.get().tel;
         String password = registerForm.get().password;
+        if (email.equals("") || name.equals("") || tel.equals("") ||password.equals("")){
+            flash("error", "Please correct the form below.");
+            return badRequest(register.render(registerForm));
+        }
 
         if (User.isRegistered(email)){
             flash("error", "This Email address is already a user! please sign in.");
@@ -68,8 +80,15 @@ public class Application extends Controller {
         return redirect(routes.Ads.index());
     }
 
-    public boolean isLogedIn(){
-        return (session("email") != null);
+    public static Result search(String keyword) {
+        if (keyword.equals("")){
+            flash("error", "What do you like to search for?!");
+            return redirect(request().getHeader("referer"));
+        }
+        List<Ad> results = Ad.search(keyword);
+        return ok(searchResult.render(results, keyword));
     }
+
+
 
 }

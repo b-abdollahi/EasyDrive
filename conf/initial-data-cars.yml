@@ -28,3 +28,26 @@ cars:
         description:        tesetsedfsg
         ad:                 null
 
+    - !!models.Car
+        id:                 5
+        manufacturer:       Benz
+        model:              A class
+        description:        tesetsedfsg
+        ad:                 null
+
+    - !!models.Car
+        id:                 6
+        manufacturer:       Bentley
+        model:              Mulsanne
+        description:        tesetsedfsg
+        ad:                 null
+
+    - !!models.Car
+        id:                 7
+        manufacturer:       Peogeot
+        model:              208
+        description:        tesetsedfsg
+        ad:                 null
+
+
+

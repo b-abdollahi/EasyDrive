@@ -7,6 +7,7 @@ create table ad (
   id                        bigint not null,
   location_id               bigint,
   car_id                    bigint,
+  user_id                   bigint,
   description               varchar(2000),
   date                      timestamp,
   picture                   blob,
@@ -49,6 +50,8 @@ alter table ad add constraint fk_ad_location_1 foreign key (location_id) referen
 create index ix_ad_location_1 on ad (location_id);
 alter table ad add constraint fk_ad_car_2 foreign key (car_id) references car (id) on delete restrict on update restrict;
 create index ix_ad_car_2 on ad (car_id);
+alter table ad add constraint fk_ad_user_3 foreign key (user_id) references user (id) on delete restrict on update restrict;
+create index ix_ad_user_3 on ad (user_id);
 
 
 
