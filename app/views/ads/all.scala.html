@@ -11,7 +11,6 @@
             <h3 > All Advertisements: </h3>
         </div>
         <div class="col-md-4">
-            <div class="pull-right">
                 <nav>
                     <ul class="pagination">
                         @if(currentPage.hasPrev) {
@@ -37,7 +36,6 @@
                         }
                     </ul>
                 </nav>
-            </div>
         </div>
         @for(ad <- currentPage.getList()) {
             @if(index % 3 == 0){
