@@ -1,5 +1,5 @@
 @(adList: List[Ad])(user: User)
-@import java.math.BigInteger; var index=0;
+@import java.math.BigInteger; var index=1;
 @import helper.twitterBootstrap._
 
 
@@ -48,7 +48,6 @@
 
           <p><b>@ad.car (@ad.location)</b></p>
           <p>@ad.description</p>
-          @*<div class="text-center"><a href="@routes.Ads.details(ad.id)" class="btn btn-primary" role="button">ad.</a></div>*@
         </div>
       </div>
     </div>
