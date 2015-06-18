@@ -53,7 +53,7 @@ public class Application extends Controller {
         User newUser = new User(email,password, name,tel);
         newUser.save();
         session().clear();
-//        session("email", email);
+        session("email", email);
         return redirect(routes.Ads.index());
     }
 
