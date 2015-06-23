@@ -12,3 +12,4 @@ This app uses Play Framework V 2.3.6
 ## More Info / Help
 please contact me at b.abdollahi@gmail.com
 
+You can als ask for an access to the live demo of this application without running it on your computer.
